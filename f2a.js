@@ -48,7 +48,7 @@ GM_addStyle ( `
         border-top: 1px solid;
         border-right: 1px solid;
     }
-    .qe_time_until {
+    .qe_time {
         visibility: hidden;
         padding-right: 5px;
     }
@@ -150,17 +150,17 @@ function getTimeUntil(){
     var time = 0;
     Array.from(queue.children).forEach(li => {
         if(hasClass(li, "queue_entry")){
-            if(hasClass(li, "queue_played") && hasClass(li.children[2], "qe_time_until") || hasClass(li, "queue_active") && hasClass(li.children[2], "qe_time_until")){
+            if(hasClass(li, "queue_played") && hasClass(li.children[2], "qe_time") || hasClass(li, "queue_active") && hasClass(li.children[2], "qe_time")){
                 if(li.children[2].innerHTML != ""){li.children[2].innerHTML = "";}
             }
             if(!hasClass(li, "queue_played")){
                 if(!hasClass(li, "queue_active")){
                     if(li.children[2]){
-                        if(hasClass(li.children[2], "qe_time_until") && li.children[2].innerHTML != "Time until: "+fancyTimeFormat(time)+" |"){
+                        if(hasClass(li.children[2], "qe_time") && li.children[2].innerHTML != "Time until: "+fancyTimeFormat(time)+" |"){
                             li.children[2].innerHTML = "Time until: "+fancyTimeFormat(time)+" |";
                         }
-                        else if(!hasClass(li.children[2], "qe_time_until")){
-                            li.children[1].insertAdjacentHTML("afterend", "<span class='qe_time qe_time_until'>Time until: "+fancyTimeFormat(time)+" |</span>");
+                        else if(!hasClass(li.children[2], "qe_time")){
+                            li.children[1].insertAdjacentHTML("afterend", "<span class='qe_time qe_time'>Time until: "+fancyTimeFormat(time)+" |</span>");
                             li.onmouseover = function(){li.children[2].style.visibility = "visible";}
                             li.onmouseleave = function(){li.children[2].style.visibility = "hidden";}
                         }
@@ -223,3 +223,4 @@ function fancyTimeFormat(duration){
     ret += "" + secs;
     return ret;
 }
+alert("test");
