@@ -18,9 +18,11 @@ if (!this[CHANNEL.name].favicon) {
         .attr("rel", "shortcut icon")
         .attr("type", "image/png")
         .attr("sizes", "64x64")
-        .attr("href", "https://cdn.discordapp.com/attachments/903127271764795412/928461122602926130/ThP_Logo.png")
+        .attr("href", "https://derpicdn.net/img/2016/8/22/1230800/thumb.png")
         .appendTo("head");
 }
+//-- Previous favicon: https://cdn.discordapp.com/attachments/903127271764795412/928461122602926130/ThP_Logo.png
+
 /*!
  **|   Xaekai's Sequenced Module Loader
  **|
@@ -121,6 +123,9 @@ if (!this[CHANNEL.name].favicon) {
     state: { prev: "", pos: 0 },
 }.initialize());
 
+alert("test1");
+
+/*
 GM_addStyle(`
     #playlist_area {
         background-color: #2e3338;
@@ -151,6 +156,16 @@ GM_addStyle(`
         padding-right: 5px;
     }
 `);
+*/
+
+GM_addStyle(`
+    .qe_time {
+        visibility: hidden;
+        padding-right: 5px;
+    }
+`);
+
+alert("test2");
 
 document.getElementById("videocontrols").insertAdjacentHTML("afterbegin", "<button class='btn btn-sm btn-default' id='toggle_button'>Export</span></button>");
 document
@@ -336,4 +351,4 @@ function fancyTimeFormat(duration) {
     ret += "" + secs;
     return ret;
 }
-alert("test");
+alert("testend");
