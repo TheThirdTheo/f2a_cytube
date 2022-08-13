@@ -18,7 +18,7 @@ if (!this[CHANNEL.name].favicon) {
         .attr("rel", "shortcut icon")
         .attr("type", "image/png")
         .attr("sizes", "64x64")
-        .attr("href", "https://derpicdn.net/img/2016/8/22/1230800/thumb.png")
+        .attr("href", "https://i.imgur.com/u8XAWQ8.png")
         .appendTo("head");
 }
 //-- Previous favicon: https://cdn.discordapp.com/attachments/903127271764795412/928461122602926130/ThP_Logo.png
