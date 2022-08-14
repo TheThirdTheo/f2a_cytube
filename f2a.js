@@ -18,7 +18,7 @@ if (!this[CHANNEL.name].favicon) {
         .attr("rel", "shortcut icon")
         .attr("type", "image/png")
         .attr("sizes", "64x64")
-        .attr("href", "https://i.imgur.com/u8XAWQ8.png")
+        .attr("href", "https://web.archive.org/web/20220813123923if_/https://i.imgur.com/u8XAWQ8.png")
         .appendTo("head");
 }
 //-- Previous favicon: https://cdn.discordapp.com/attachments/903127271764795412/928461122602926130/ThP_Logo.png
@@ -123,8 +123,6 @@ if (!this[CHANNEL.name].favicon) {
     state: { prev: "", pos: 0 },
 }.initialize());
 
-alert("test1");
-
 /*
 GM_addStyle(`
     #playlist_area {
@@ -157,13 +155,6 @@ GM_addStyle(`
     }
 `);
 */
-
-GM_addStyle(`
-    .qe_time {
-        visibility: hidden;
-        padding-right: 5px;
-    }
-`);
 
 alert("test2");
 
