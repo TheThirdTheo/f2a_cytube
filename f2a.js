@@ -50,7 +50,7 @@ if (!this[CHANNEL.name].favicon) {
         userlist: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_userlist.min.js", done: true },
         md5hash: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_md5.min.js", done: true },
         designator: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_designator.min.js", done: true },
-        playlist: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_playlist.min.js", done: true },
+        playlist: { active: 1, rank: -1, url: "https://raw.githubusercontent.com/TheThirdTheo/f2a_cytube/main/module_playlist.min.js", done: true },
         notifier: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_alerts.min.js", done: true },
         chatline: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_chatline.min.js", done: true },
         chatext: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_colormap.min.js", done: true },
