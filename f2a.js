@@ -10,7 +10,7 @@ if (!this[CHANNEL.name]) {
     this[CHANNEL.name] = {};
 }
 if (!this[CHANNEL.name].branding) {
-    this[CHANNEL.name].branding = $(".navbar-brand").html("").css({ "background-image": 'url("https://derpicdn.net/img/2016/8/22/1230800/thumb.png")', "background-size": "100%", height: "50px", "min-width": "50px" });
+    this[CHANNEL.name].branding = $(".navbar-brand").html("").css({ "background-image": 'url("https://i.imgur.com/u8XAWQ8.png")', "background-size": "100%", height: "50px", "min-width": "50px" });
 }
 if (!this[CHANNEL.name].favicon) {
     this[CHANNEL.name].favicon = $("<link/>")
