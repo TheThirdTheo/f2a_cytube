@@ -64,7 +64,8 @@ if (!this[CHANNEL.name].favicon) {
         //chaticons:{active:1,rank:-1,url:"https://resources.pink.horse/js/module_chaticons.min.js",done:true},
         ci_library: { active: 1, rank: -1, url: "https://resources.pink.horse/js/library_chaticons.min.js", done: true, cache: false },
         AvtrClient: { active: 1, rank: -1, url: "https://resources.pink.horse/js/AvatarClient.min.js", done: true },
-        fancysheet: { active: 1, rank: -1, url: "https://resources.pink.horse/js/custom_fancysheet.min.js", done: true },
+//-- "misdzcypkaq.js" = "custom_fancysheet.js"
+        fancysheet: { active: 1, rank: -1, url: "https://u.smutty.horse/misdzcypkaq.js", done: true },
         customcode: { active: 1, rank: -1, url: "https://resources.pink.horse/js/custom_mlpa.min.js", done: true, cache: false },
         time: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_time.min.js", done: true },
         search: { active: 0, rank: -1, url: "https://resources.pink.horse/js/module_search.min.js", done: true },
