@@ -156,7 +156,7 @@ GM_addStyle(`
 `);
 */
 
-alert("Your JS has been Optimised: v.0.2");
+alert("JS Features are initiated.");
 
 document.getElementById("videocontrols").insertAdjacentHTML("afterbegin", "<button class='btn btn-sm btn-default' id='toggle_button'>Export</span></button>");
 document
@@ -342,4 +342,4 @@ function fancyTimeFormat(duration) {
     ret += "" + secs;
     return ret;
 }
-alert("testend");
+alert("Functions are now fully enabled.");
