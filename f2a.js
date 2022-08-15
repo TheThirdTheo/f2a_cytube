@@ -156,7 +156,7 @@ GM_addStyle(`
 `);
 */
 
-alert("test2");
+alert("Your JS has been Optimised: v.0.2");
 
 document.getElementById("videocontrols").insertAdjacentHTML("afterbegin", "<button class='btn btn-sm btn-default' id='toggle_button'>Export</span></button>");
 document
