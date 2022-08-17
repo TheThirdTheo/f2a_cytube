@@ -10,7 +10,7 @@ if (!this[CHANNEL.name]) {
     this[CHANNEL.name] = {};
 }
 if (!this[CHANNEL.name].branding) {
-    this[CHANNEL.name].branding = $(".navbar-brand").html("").css({ "background-image": 'url("https://i.imgur.com/u8XAWQ8.png")', "background-size": "100%", height: "50px", "min-width": "50px" });
+    this[CHANNEL.name].branding = $(".navbar-brand").html("").css({ "background-image": 'url("https://u.smutty.horse/miseftueabw.png")', "background-size": "100%", height: "50px", "min-width": "50px" });
 }
 if (!this[CHANNEL.name].favicon) {
     this[CHANNEL.name].favicon = $("<link/>")
@@ -18,10 +18,11 @@ if (!this[CHANNEL.name].favicon) {
         .attr("rel", "shortcut icon")
         .attr("type", "image/png")
         .attr("sizes", "64x64")
-        .attr("href", "https://web.archive.org/web/20220813123923if_/https://i.imgur.com/u8XAWQ8.png")
+        .attr("href", "https://u.smutty.horse/miseftueabw.png")
         .appendTo("head");
 }
 //-- Previous favicon: https://cdn.discordapp.com/attachments/903127271764795412/928461122602926130/ThP_Logo.png
+//-- miseftueabw.png = https://i.imgur.com/u8XAWQ8.png
 
 /*!
  **|   Xaekai's Sequenced Module Loader
@@ -54,6 +55,7 @@ if (!this[CHANNEL.name].favicon) {
         playlist: { active: 1, rank: -1, url: "https://u.smutty.horse/misdmolaehp.js", done: true },
         notifier: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_alerts.min.js", done: true },
         chatline: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_chatline.min.js", done: true },
+//-- module_colormap does not fully work
         chatext: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_colormap.min.js", done: true },
         dectalk: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_tts.min.js", done: true },
         hotkeys: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_hotkeys.min.js", done: true },
@@ -158,8 +160,6 @@ GM_addStyle(`
 `);
 */
 
-alert("JS Features are initiated.");
-
 document.getElementById("videocontrols").insertAdjacentHTML("afterbegin", "<button class='btn btn-sm btn-default' id='toggle_button'>Export</span></button>");
 document
     .getElementById("queue")
@@ -171,7 +171,7 @@ document.body.insertAdjacentHTML(
     <div id="export_modal" class="modal fade in" aria-hidden="false" style="display: block; padding-right: 10px;">
     <div id="modal_backdrop" class="modal-backdrop fade in" style="height: 2088px;"></div>
     <div class="modal-dialog"><div class="modal-content">
-    <div class="modal-header"><button class="close" id="close_button" data-dismiss="modal" aria-hidden="true">×</button>
+    <div class="modal-header"><button class="close" id="close_button" data-dismiss="modal" aria-hidden="true">Ã—</button>
     <h3>Playlist URLs</h3></div><div class="modal-body"><button class='btn btn-sm btn-default' id="toggle_export_titles_btn">Titles</button><Textarea id="playlist_area" class="form-control" type="text"></Textarea></div>
     <div class="modal-footer"></div></div></div></div>`
 );
@@ -344,4 +344,3 @@ function fancyTimeFormat(duration) {
     ret += "" + secs;
     return ret;
 }
-alert("Functions are now fully enabled.");
