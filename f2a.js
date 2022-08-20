@@ -10,7 +10,7 @@ if (!this[CHANNEL.name]) {
     this[CHANNEL.name] = {};
 }
 if (!this[CHANNEL.name].branding) {
-    this[CHANNEL.name].branding = $(".navbar-brand").html("").css({ "background-image": 'url("https://u.smutty.horse/miseftueabw.png")', "background-size": "100%", height: "50px", "min-width": "50px" });
+    this[CHANNEL.name].branding = $(".navbar-brand").html("").css({ "background-image": 'url("https://u.smutty.horse/miseftueabw.png")', "background-size": "80%", "height": "50px", "min-width": "50px", "background-size": "80%", "background-position": "center", "background-repeat": "no-repeat" });
 }
 if (!this[CHANNEL.name].favicon) {
     this[CHANNEL.name].favicon = $("<link/>")
