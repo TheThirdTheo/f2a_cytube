@@ -10,7 +10,7 @@ if (!this[CHANNEL.name]) {
     this[CHANNEL.name] = {};
 }
 if (!this[CHANNEL.name].branding) {
-    this[CHANNEL.name].branding = $(".navbar-brand").html("").css({ "background-image": 'url("https://u.smutty.horse/miseftueabw.png")', "background-size": "80%", "height": "50px", "min-width": "50px", "background-size": "80%", "background-position": "center", "background-repeat": "no-repeat" });
+    this[CHANNEL.name].branding = $(".navbar-brand").html("").css({ "background-image": 'url("https://u.smutty.horse/miseftueabw.png")', "height": "50px", "min-width": "50px", "background-size": "80%", "background-position": "center", "background-repeat": "no-repeat" });
 }
 if (!this[CHANNEL.name].favicon) {
     this[CHANNEL.name].favicon = $("<link/>")
@@ -171,7 +171,7 @@ document.body.insertAdjacentHTML(
     <div id="export_modal" class="modal fade in" aria-hidden="false" style="display: block; padding-right: 10px;">
     <div id="modal_backdrop" class="modal-backdrop fade in" style="height: 2088px;"></div>
     <div class="modal-dialog"><div class="modal-content">
-    <div class="modal-header"><button class="close" id="close_button" data-dismiss="modal" aria-hidden="true">Ã—</button>
+    <div class="modal-header"><button class="close" id="close_button" data-dismiss="modal" aria-hidden="true">&#xD7;</button>
     <h3>Playlist URLs</h3></div><div class="modal-body"><button class='btn btn-sm btn-default' id="toggle_export_titles_btn">Titles</button><Textarea id="playlist_area" class="form-control" type="text"></Textarea></div>
     <div class="modal-footer"></div></div></div></div>`
 );
