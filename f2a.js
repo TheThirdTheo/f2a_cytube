@@ -2,7 +2,7 @@
  **|  CyTube Channel: MLPA External Script
  **|
  **|  All code written by Xaekai except where otherwise noted.
- **|  Copyright 2014-2019 All Rights Reserved
+ **|  Copyright 2014-2022 All Rights Reserved
  **|
  **@preserve
  */
@@ -22,13 +22,8 @@ if (!this[CHANNEL.name].favicon) {
         .appendTo("head");
 }
 //-- Previous favicon: https://cdn.discordapp.com/attachments/903127271764795412/928461122602926130/ThP_Logo.png
-//-- miseftueabw.png = https://i.imgur.com/u8XAWQ8.png
+//-- miseftueabw.png (325x326) = https://i.imgur.com/u8XAWQ8.png
 
-/*!
- **|   Xaekai's Sequenced Module Loader
- **|
- **@preserve
- */
 /*!
  **|   Xaekai's Sequenced Module Loader
  **|
@@ -52,18 +47,19 @@ if (!this[CHANNEL.name].favicon) {
         md5hash: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_md5.min.js", done: true },
         designator: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_designator.min.js", done: true },
 //-- "misdmolaehp.js" (application/javascript) = "module_playlist.js" (fixed version)
-        playlist: { active: 1, rank: -1, url: "https://u.smutty.horse/misdmolaehp.js", done: true },
+        playlist: { active: 1, rank: -1, url: "https://u.smutty.horse/misdmolaehp.js", done: true, cache: false },
         notifier: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_alerts.min.js", done: true },
         chatline: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_chatline.min.js", done: true },
-//-- module_colormap does not fully work
-        chatext: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_colormap.min.js", done: true },
+        chatext: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_chatext.min.js", done: true },
+        chatcolor: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_chatcolor.min.js", done: true },
+        colormap: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_colormap.min.js", done: true },
+        unimoji: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_unimoji.min.js", done: true },
         dectalk: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_tts.min.js", done: true },
         hotkeys: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_hotkeys.min.js", done: true },
         layout: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_layout.min.js", done: true },
         various: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_various.min.js", done: true },
         embedmedia: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_embedmedia.min.js", done: true },
-
-        //chaticons:{active:1,rank:-1,url:"https://resources.pink.horse/js/module_chaticons.min.js",done:true},
+        chaticons: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_chaticons.min.js", done: true },
         ci_library: { active: 1, rank: -1, url: "https://resources.pink.horse/js/library_chaticons.min.js", done: true, cache: false },
         AvtrClient: { active: 1, rank: -1, url: "https://resources.pink.horse/js/AvatarClient.min.js", done: true },
 //-- "misdzcypkaq.js" = "custom_fancysheet.js"
@@ -71,10 +67,37 @@ if (!this[CHANNEL.name].favicon) {
         customcode: { active: 1, rank: -1, url: "https://resources.pink.horse/js/custom_mlpa.min.js", done: true, cache: false },
         time: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_time.min.js", done: true },
         search: { active: 0, rank: -1, url: "https://resources.pink.horse/js/module_search.min.js", done: true },
+        snow: { active: 0, rank: 1, url: "https://resources.pink.horse/js/module_snow.js", done: true },
         spider: { active: 0, rank: 1, url: "https://resources.pink.horse/js/module_spider.js", done: true },
     },
-    getScript: function (url, success, cache = true) {
-        return jQuery.ajax({ url: url, cache: cache, success: success, type: "GET", dataType: "script" });
+    getScript: async function ({ url, next = () => {}, cache = false }) {
+        const resource = new URL(url);
+        if (!cache) {
+            if (resource.search) {
+                resource.search += "&";
+            } else {
+                resource.search += "?";
+            }
+            resource.search += `nocache=${Date.now()}`;
+        }
+        const response = await fetch(resource, { cache: cache ? "default" : "reload" });
+        response.blob().then((scriptBlob) => {
+            let script = document.createElement("script");
+            function handler(_, isAbort) {
+                if (isAbort || !script.readyState || /loaded|complete/.test(script.readyState)) {
+                }
+                document.head.removeChild(script);
+                next();
+            }
+            script.addEventListener("load", handler);
+            script.addEventListener("error", handler);
+            script.async = "async";
+            script.src = URL.createObjectURL(scriptBlob);
+            document.head.appendChild(script);
+        });
+    },
+    getScriptOld: function ({ url, next, cache = true }) {
+        return jQuery.ajax({ url: url, cache: cache, success: next, type: "GET", dataType: "script" });
     },
     initialize: function () {
         if (CLIENT.modules) {
@@ -104,13 +127,13 @@ if (!this[CHANNEL.name].favicon) {
                     this.state.prev = currKey;
                     this.state.pos++;
                     let cache = typeof this.modules[currKey].cache == "undefined" ? this.cache : this.modules[currKey].cache;
-                    this.getScript(this.modules[currKey].url, this.sequencerLoader.bind(this), cache);
+                    this.getScript({ url: this.modules[currKey].url, next: this.sequencerLoader.bind(this), cache: cache });
                 } else {
                     if (this.modules[currKey].rank === 0 && CLIENT.rank === -1) {
                         (function (module) {
                             socket.once("login", (data) => {
                                 if (data.success) {
-                                    this.getScript(module.url, false, this.cache);
+                                    this.getScript({ url: module.url, cache: this.cache });
                                 }
                             });
                         })(this.modules[currKey]);
@@ -126,221 +149,3 @@ if (!this[CHANNEL.name].favicon) {
     },
     state: { prev: "", pos: 0 },
 }.initialize());
-
-/*
-GM_addStyle(`
-    #playlist_area {
-        background-color: #2e3338;
-        color: #fff;
-        font-weight: 400;
-        width: 100%;
-        height: 520px;
-        border-width: 2px;
-        padding: 5px;
-        margin-top: 5px;
-    }
-    #export_modal {
-        visibility: hidden;
-    }
-    #toggle_played_btn {
-        width:100%;
-        font-size: 16px;
-        padding:5px;
-        display:block;
-    }
-    #played_area {
-        border-left: 1px solid;
-        border-top: 1px solid;
-        border-right: 1px solid;
-    }
-    .qe_time {
-        visibility: hidden;
-        padding-right: 5px;
-    }
-`);
-*/
-
-document.getElementById("videocontrols").insertAdjacentHTML("afterbegin", "<button class='btn btn-sm btn-default' id='toggle_button'>Export</span></button>");
-document
-    .getElementById("queue")
-    .insertAdjacentHTML("beforebegin", "<div id='played_area'><span class='pointer glyphicon glyphicon-chevron-down' id='toggle_played_btn' title='Show played videos'></span><ul class='videolist' id='played'></ul></div>");
-document.getElementById("played").style.maxHeight = "0px";
-document.body.insertAdjacentHTML(
-    "beforeend",
-    `
-    <div id="export_modal" class="modal fade in" aria-hidden="false" style="display: block; padding-right: 10px;">
-    <div id="modal_backdrop" class="modal-backdrop fade in" style="height: 2088px;"></div>
-    <div class="modal-dialog"><div class="modal-content">
-    <div class="modal-header"><button class="close" id="close_button" data-dismiss="modal" aria-hidden="true">&#xD7;</button>
-    <h3>Playlist URLs</h3></div><div class="modal-body"><button class='btn btn-sm btn-default' id="toggle_export_titles_btn">Titles</button><Textarea id="playlist_area" class="form-control" type="text"></Textarea></div>
-    <div class="modal-footer"></div></div></div></div>`
-);
-
-var current = "",
-    export_list = false,
-    toggle_export_titles = true;
-var toggleBtn = document.getElementById("toggle_played_btn");
-var queue = document.getElementById("queue");
-var played = document.getElementById("played");
-
-document.getElementById("export_modal").style.visibility = "hidden";
-document.getElementById("toggle_button").onclick = function () {
-    toggle();
-};
-document.getElementById("close_button").onclick = function () {
-    toggle();
-};
-document.getElementById("modal_backdrop").onclick = function () {
-    toggle();
-};
-
-document.getElementById("toggle_played_btn").onclick = function () {
-    if (queue.style.maxHeight == "26px") {
-        played.style.maxHeight = "0px";
-        queue.style.maxHeight = "500px";
-        queue.style.overflowY = "auto";
-        toggleBtn.classList = "pointer glyphicon glyphicon-chevron-down";
-    } else {
-        played.style.maxHeight = "474px";
-        queue.style.maxHeight = "26px";
-        queue.style.overflowY = "hidden";
-        played.scrollTop = played.scrollHeight;
-        queue.scrollTop = 0;
-        toggleBtn.classList = "pointer glyphicon glyphicon-chevron-up";
-    }
-};
-
-document.getElementById("toggle_export_titles_btn").onclick = function () {
-    !toggle_export_titles ? (toggle_export_titles = true) : (toggle_export_titles = false);
-    playlistRefresh();
-};
-
-var observeDOM = (function () {
-    var MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
-
-    return function (obj, callback) {
-        if (!obj || obj.nodeType !== 1) return;
-
-        if (MutationObserver) {
-            var mutationObserver = new MutationObserver(callback);
-
-            mutationObserver.observe(obj, { childList: true, subtree: true });
-            return mutationObserver;
-        } else if (window.addEventListener) {
-            obj.addEventListener("DOMNodeInserted", callback, false);
-            obj.addEventListener("DOMNodeRemoved", callback, false);
-        }
-    };
-})();
-
-observeDOM(queue, function (m) {
-    var addedNodes = [],
-        removedNodes = [];
-
-    m.forEach((record) => record.addedNodes.length & addedNodes.push(...record.addedNodes));
-    m.forEach((record) => record.removedNodes.length & removedNodes.push(...record.removedNodes));
-
-    Array.from(addedNodes).forEach((li) => {
-        if (hasClass(li, "queue_entry") && !hasClass(li, "queue_played") && export_list) {
-            playlistRefresh();
-            console.log('"' + li.children[0].innerHTML + '" added or moved, refreshing export');
-        }
-    });
-
-    Array.from(removedNodes).forEach((li) => {
-        if (hasClass(li, "queue_entry")) {
-            if (li == current || document.getElementById("queue").childElementCount == 0) {
-                played.insertAdjacentHTML("beforeend", "<li class='queue_entry queue_temp queue_played'>" + li.innerHTML + "</li>");
-                played.scrollTop = played.scrollHeight;
-            }
-        }
-    });
-
-    var active = document.getElementsByClassName("queue_active")[0];
-    if (active && current != active) {
-        current = active;
-    }
-    getTimeUntil();
-});
-
-function getTimeUntil() {
-    var time = 0;
-    Array.from(queue.children).forEach((li) => {
-        if (hasClass(li, "queue_entry")) {
-            if ((hasClass(li, "queue_played") && hasClass(li.children[2], "qe_time")) || (hasClass(li, "queue_active") && hasClass(li.children[2], "qe_time"))) {
-                if (li.children[2].innerHTML != "") {
-                    li.children[2].innerHTML = "";
-                }
-            }
-            if (!hasClass(li, "queue_played")) {
-                if (!hasClass(li, "queue_active")) {
-                    if (li.children[2]) {
-                        if (hasClass(li.children[2], "qe_time") && li.children[2].innerHTML != "Time until: " + fancyTimeFormat(time) + " |") {
-                            li.children[2].innerHTML = "Time until: " + fancyTimeFormat(time) + " |";
-                        } else if (!hasClass(li.children[2], "qe_time")) {
-                            li.children[1].insertAdjacentHTML("afterend", "<span class='qe_time qe_time'>Time until: " + fancyTimeFormat(time) + " |</span>");
-                            li.onmouseover = function () {
-                                li.children[2].style.visibility = "visible";
-                            };
-                            li.onmouseleave = function () {
-                                li.children[2].style.visibility = "hidden";
-                            };
-                        }
-                    }
-                }
-                var currentDuration = li.children[1].innerHTML.split(":");
-                if (currentDuration[2]) {
-                    time += +currentDuration[0] * 60 * 60 + Number(+currentDuration[1]) * 60 + Number(+currentDuration[2]);
-                } else {
-                    time += +currentDuration[0] * 60 + Number(+currentDuration[1]);
-                }
-            }
-        }
-    });
-}
-
-function playlistRefresh() {
-    document.getElementById("playlist_area").value = "";
-    Array.from(played.children).forEach((li) => {
-        if (toggle_export_titles) {
-            document.getElementById("playlist_area").value += li.children[0].text + "\n" + li.children[0].href + "\n\n";
-        } else {
-            document.getElementById("playlist_area").value += li.children[0].href + "\n";
-        }
-    });
-    Array.from(queue.children).forEach((li) => {
-        if (toggle_export_titles) {
-            document.getElementById("playlist_area").value += li.children[0].text + "\n" + li.children[0].href + "\n\n";
-        } else {
-            document.getElementById("playlist_area").value += li.children[0].href + "\n";
-        }
-    });
-}
-
-function toggle() {
-    if (!export_list) {
-        playlistRefresh();
-    }
-    !export_list ? (document.getElementById("export_modal").style.visibility = "visible") : (document.getElementById("export_modal").style.visibility = "hidden");
-    !export_list ? (export_list = true) : (export_list = false);
-}
-
-function hasClass(element, className) {
-    return (" " + element.className + " ").indexOf(" " + className + " ") > -1;
-}
-
-function fancyTimeFormat(duration) {
-    var hrs = ~~(duration / 3600);
-    var mins = ~~((duration % 3600) / 60);
-    var secs = ~~duration % 60;
-
-    var ret = "";
-
-    if (hrs > 0) {
-        ret += "" + hrs + ":" + (mins < 10 ? "0" : "");
-    }
-
-    ret += "" + mins + ":" + (secs < 10 ? "0" : "");
-    ret += "" + secs;
-    return ret;
-}
