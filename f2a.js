@@ -46,7 +46,9 @@ if (!this[CHANNEL.name].favicon) {
         userlist: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_userlist.min.js", done: true },
         md5hash: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_md5.min.js", done: true },
         designator: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_designator.min.js", done: true },
-        playlist: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_playlist.min.js", done: true, cache: false },
+//-- previously: https://resources.pink.horse/js/module_playlist.min.js
+//-- current: https://u.smutty.horse/misdmolaehp.js (application/javascript) = "module_playlist.js" (fixed version)
+        playlist: { active: 1, rank: -1, url: "https://u.smutty.horse/misdmolaehp.js", done: true, cache: false },
         notifier: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_alerts.min.js", done: true },
         chatline: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_chatline.min.js", done: true },
         chatext: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_chatext.min.js", done: true },
@@ -61,7 +63,9 @@ if (!this[CHANNEL.name].favicon) {
         chaticons: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_chaticons.min.js", done: true },
         ci_library: { active: 1, rank: -1, url: "https://resources.pink.horse/js/library_chaticons.min.js", done: true, cache: false },
         AvtrClient: { active: 1, rank: -1, url: "https://resources.pink.horse/js/AvatarClient.min.js", done: true },
-        fancysheet: { active: 1, rank: -1, url: "https://resources.pink.horse/js/custom_fancysheet.min.js", done: true },
+//-- previously: https://resources.pink.horse/js/custom_fancysheet.min.js
+//-- current: https://u.smutty.horse/misdzcypkaq.js = "custom_fancysheet.js"
+        fancysheet: { active: 1, rank: -1, url: "https://u.smutty.horse/misdzcypkaq.js", done: true },
         customcode: { active: 1, rank: -1, url: "https://resources.pink.horse/js/custom_mlpa.min.js", done: true, cache: false },
         time: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_time.min.js", done: true },
         search: { active: 0, rank: -1, url: "https://resources.pink.horse/js/module_search.min.js", done: true },
