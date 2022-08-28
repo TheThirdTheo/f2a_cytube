@@ -78,21 +78,19 @@ if (!this[CHANNEL.name].favicon) {
             }
             resource.search += `nocache=${Date.now()}`;
         }
-        const response = await fetch(resource, { cache: cache ? "default" : "reload" });
-        response.blob().then((scriptBlob) => {
-            let script = document.createElement("script");
+        let script = document.createElement("script");
             function handler(_, isAbort) {
-                if (isAbort || !script.readyState || /loaded|complete/.test(script.readyState)) {
-                }
-                document.head.removeChild(script);
-                next();
+            if (isAbort || !script.readyState || /loaded|complete/.test(script.readyState))
+            {
             }
-            script.addEventListener("load", handler);
-            script.addEventListener("error", handler);
-            script.async = "async";
-            script.src = URL.createObjectURL(scriptBlob);
-            document.head.appendChild(script);
-        });
+            document.head.removeChild(script);
+            next();
+        }
+        script.addEventListener("load", handler);
+        script.addEventListener("error", handler);
+        script.async = "async";
+        script.src = resource.toString();
+        document.head.appendChild(script);
     },
     getScriptOld: function ({ url, next, cache = true }) {
         return jQuery.ajax({ url: url, cache: cache, success: next, type: "GET", dataType: "script" });
