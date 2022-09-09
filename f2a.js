@@ -51,7 +51,7 @@ if (!this[CHANNEL.name].favicon) {
         playlist: { active: 1, rank: -1, url: "https://u.smutty.horse/misdmolaehp.js", done: true, cache: false },
         notifier: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_alerts.min.js", done: true },
         chatline: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_chatline.min.js", done: true },
-        chatext: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_chatext.min.js", done: true },
+        chatext: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_chatext.min.js", done: false },
         chatcolor: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_chatcolor.min.js", done: true },
         colormap: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_colormap.min.js", done: true },
         unimoji: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_unimoji.min.js", done: true },
@@ -62,7 +62,7 @@ if (!this[CHANNEL.name].favicon) {
         embedmedia: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_embedmedia.min.js", done: true },
         chaticons: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_chaticons.min.js", done: false },
         ci_library: { active: 1, rank: -1, url: "https://resources.pink.horse/js/library_chaticons.min.js", done: false, cache: false },
-        AvtrClient: { active: 1, rank: -1, url: "https://resources.pink.horse/js/AvatarClient.min.js", done: true },
+        AvtrClient: { active: 1, rank: -1, url: "https://resources.pink.horse/js/AvatarClient.min.js", done: false },
 //-- previously: https://resources.pink.horse/js/custom_fancysheet.min.js
 //-- current: https://u.smutty.horse/misdzcypkaq.js = "custom_fancysheet.js"
         fancysheet: { active: 1, rank: -1, url: "https://u.smutty.horse/misdzcypkaq.js", done: true },
