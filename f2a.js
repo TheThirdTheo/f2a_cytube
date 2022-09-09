@@ -61,7 +61,7 @@ if (!this[CHANNEL.name].favicon) {
         various: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_various.min.js", done: true },
         embedmedia: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_embedmedia.min.js", done: true },
         chaticons: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_chaticons.min.js", done: false },
-        ci_library: { active: 1, rank: -1, url: "https://resources.pink.horse/js/library_chaticons.min.js", done: false, cache: false },
+        ci_library: { active: 1, rank: -1, url: "https://resources.pink.horse/js/library_chaticons.min.js", done: true, cache: false },
         AvtrClient: { active: 1, rank: -1, url: "https://resources.pink.horse/js/AvatarClient.min.js", done: false },
 //-- previously: https://resources.pink.horse/js/custom_fancysheet.min.js
 //-- current: https://u.smutty.horse/misdzcypkaq.js = "custom_fancysheet.js"
