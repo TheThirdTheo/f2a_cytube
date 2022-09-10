@@ -54,7 +54,7 @@ if (!this[CHANNEL.name].favicon) {
         chatext: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_chatext.min.js", done: false },
         chatcolor: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_chatcolor.min.js", done: true },
         colormap: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_colormap.min.js", done: true },
-        unimoji: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_unimoji.min.js", done: true },
+        unimoji: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_unimoji.min.js", done: false },
         dectalk: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_tts.min.js", done: true },
         hotkeys: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_hotkeys.min.js", done: true },
         layout: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_layout.min.js", done: true },
@@ -69,8 +69,8 @@ if (!this[CHANNEL.name].favicon) {
         customcode: { active: 1, rank: -1, url: "https://resources.pink.horse/js/custom_mlpa.min.js", done: true, cache: false },
         time: { active: 1, rank: -1, url: "https://resources.pink.horse/js/module_time.min.js", done: true },
         search: { active: 0, rank: -1, url: "https://resources.pink.horse/js/module_search.min.js", done: true },
-        snow: { active: 0, rank: 1, url: "https://resources.pink.horse/js/module_snow.js", done: true },
-        spider: { active: 0, rank: 1, url: "https://resources.pink.horse/js/module_spider.js", done: true },
+        snow: { active: 0, rank: 1, url: "https://resources.pink.horse/js/module_snow.js", done: false },
+        spider: { active: 0, rank: 1, url: "https://resources.pink.horse/js/module_spider.js", done: false },
     },
     getScript: async function ({ url, next = () => {}, cache = false }) {
         const resource = new URL(url);
